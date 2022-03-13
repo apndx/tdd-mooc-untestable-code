@@ -16,13 +16,6 @@ export class Untestables {
     globalVariable = sum(globalVariable, 1);
   }
 
-  createTextFile(fileName, content) {
-    fs.appendFile(fileName, content, function (err) {
-      if (err) throw err;
-      console.log("Saved!");
-    });
-  }
-
   createJsonFile(fileName, content) {
     const data = JSON.stringify(content);
     fs.writeFileSync(fileName, data);
@@ -34,21 +27,20 @@ export class Untestables {
     return json;
   }
 
-  readFileContent(fileName) {
-    fs.readFile(fileName, 'utf8', (err, data)=>{
-      if(err){
-          console.log(err)
-          throw err
-      }else{
-          return data;
-      }
-    })
-  };
-
   deleteFile(fileName) {
     fs.unlink(fileName, function (err) {
       if (err) throw err;
       console.log("File deleted!");
     });
   }
+
+  giveTenRandomNumbersBetween0And100() {
+    var numbers = []
+    for (var i=0; i<10; i++) {
+      const position = Math.floor(Math.random() * 100)+1;
+      numbers.push(position);
+    }
+    return numbers;
+  }
+
 }
